@@ -1,0 +1,73 @@
+---
+# YAML is quite nice and compared to JSON you may comment and refer data types, use tags and some other advanced features
+# Also it looks way to easy...
+sources: 
+    vhdl-2008: 
+        - my_cool_lib:
+            - file_a.vhd
+            - file_b.vhd
+        - my_regretable_dessitions:
+            - file_a.vhd
+            - file_b.vhd
+    vlog:
+        # Note: Not sure if verilog uses libraries the same as vhdl?
+        - my_cool_lib:
+            - apa.v
+    constraints:
+        - my.xdc
+
+# We can expand some structures
+# But this will require more backend parsing/data selection and optional/required management.
+sources2: 
+    vhdl: 
+        - standard: 2008
+          library: my_cool_lib
+          files:
+            - file_a.vhd
+            - file_b.vhd
+
+        # Partial defenitions would be possible
+        - files:
+            - file_a.vhd
+            - file_b.vhd
+    vlog:
+        # Note: Not sure if verilog uses libraries the same as vhdl?
+        - my_cool_lib:
+            - apa.v
+    constraints:
+        - my.xdc
+
+# For some reason we say someone whants separations of the tb files for academic purpuses.
+# and the standard and library should be explicit
+test:
+    # Used in all tests
+    all:
+        # Note: list of dicts. Let your data usage define your data structure. loop lists and pick elements from dicts
+        - language: vhdl
+          standard: 2008
+          library: my_cool_lib
+          files:
+            - a.vhd
+            - b.vhd
+        
+        - language: vhdl
+          standard: 2008
+          library: my_regretable_dessitions
+          files:
+            - c.vhd
+            - d.vhd
+    
+    # Test uses special version of file Y
+    tb1:
+        - language: vhdl
+          standard: 2008
+          library: my_cool_lib
+          files:
+            - e.vhd
+            - f.vhd
+
+        - language: verilog
+          standard: 2002
+          library: my_cool_lib
+          files:
+            - apa.v

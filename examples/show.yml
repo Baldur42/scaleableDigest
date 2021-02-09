@@ -1,0 +1,16 @@
+---
+# Easies example to show of
+vhdl: 
+    - file_a.vhd
+    - file_b.vhd
+
+vhdl-2008: 
+    - file_c.vhd
+    - file_d.vhd
+
+vhdl-08: 
+    - file_e.vhd
+    - file_f.vhd
+
+vlog:
+    - apa.v

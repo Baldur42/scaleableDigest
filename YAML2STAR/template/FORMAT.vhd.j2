@@ -1,0 +1,15 @@
+{% import "helpers.vhd.j2" as generate %}
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity {{ name }} is
+    port ({{ generate.port_render(ports) }}
+    {# TODO: macro for {{ generate.ports_out(registers) }} #}); 
+end {{ name }};
+
+architecture generated of {{ name }} is
+    {# TODO: macro for {{ generate.signals(registers) }} #}
+begin
+    {# TODO: some fun body #}
+end generated;

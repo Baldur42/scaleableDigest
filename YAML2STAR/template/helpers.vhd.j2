@@ -1,0 +1,12 @@
+{# Macro file, small functions that i guess will be used by multiple FORMATS/templates #}
+{# - in %- is a way to handle white space, not a big fan yet, render and iter until u get i right #}
+
+{# 
+Expects list of dicts and cares about name, dir and size. 
+Assumptions are if size not set it is a std_logic else it is a slv, implications is that size=1 renders to an slv of len 1
+#}
+{%- macro port_render(ports) -%}
+    {%- for n in ports %}
+        {{ n.name | lower }} : {{ n.dir }} {% if n.size is defined %}std_logic_vector({{ n.size | int - 1 }} downoto 0){% else %}std_logic{% endif %};
+    {%- endfor -%}
+{%- endmacro -%}
