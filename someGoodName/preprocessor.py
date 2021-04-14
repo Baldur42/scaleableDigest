@@ -1,12 +1,18 @@
+"""
+Data validatators for CLI parsing
+"""
 from pathlib import Path
-import logging as log
+import logging
 
-#
-# Check/Validate and/or prossess/manipulate user arguments.
-#   Do some wrangling before the program gets it back
-#
+log = logging.getLogger(__name__)
 
-# Known formats from templates with helpers removed (do not re calculate this all the time)
+# Add format as this is setup after preprocessors are used
+# NOTE: Change to logging.BASIC_FORMAT if regular format changes
+console = logging.StreamHandler()
+console.setFormatter(logging.Formatter(logging.BASIC_FORMAT))
+log.addHandler(console)
+
+# Known formats from templates with helpers removed
 # TODO: quick and dirty, will need attention when format extends to multiple file types.
 formats = {"helpers"} ^ set(
     map(
@@ -26,7 +32,7 @@ def valid_format(f: str) -> str:
 
     TODO: this could return a function instead of a name
     """
-    if f in formats:
+    if f not in formats:
         log.error(f"Unknwon format '{f}', Known formats are {formats}")
     return f
 
@@ -40,8 +46,8 @@ def file_check(f: str) -> Path:
         Path: path object
     """
     p = Path(f)
-    if p.is_file():
-        log.warning(f"File '{p.name}' does not exist; {p.resolve()}")
+    if not p.is_file():
+        log.error(f"File '{p.name}' does not exist; {p.resolve()}")
     return p
 
 

@@ -1,4 +1,5 @@
 ---
+$schema: TODO Reference to schema
 # YAML is quite nice and compared to JSON you may comment and refer data types, use tags and some other advanced features
 # Also it looks way to easy...
 sources: 

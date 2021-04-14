@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="intersection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="node" maxOccurs="unbounded" minOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="name" use="required"/>
+                        <xs:attribute name="size" type="hex_or_unsigned" use="required"/>
+                        <xs:attribute name="offset" type="lazy" use="optional" default="auto"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="lazy">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="auto"/>
+            <xs:pattern value="[0-9]+"/>
+            <xs:pattern value="0x[0-9A-Fa-f]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="hex_or_unsigned">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Hex 0x notation or a unsigned
+                </xs:documentation>
+            </xs:annotation>
+            <!-- TODO: shall leading 0 be allowed?-->
+            <xs:pattern value="[0-9]+"/> 
+            <xs:pattern value="0x[0-9A-Fa-f]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

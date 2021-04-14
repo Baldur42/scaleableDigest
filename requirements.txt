@@ -2,3 +2,4 @@
 tox
 black
 mypy
+pytest
