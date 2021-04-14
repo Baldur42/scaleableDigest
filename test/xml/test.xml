@@ -1,6 +1,6 @@
-<?xml-model href="..\..\someGoodName\schema\xsd\test.xsd"?>
+<?xml-model href="https://raw.githubusercontent.com/halfow/scaleableDigest/main/someGoodName/schema/xsd/test.xsd" ?>
 <intersection name="aaa">
-    <node name="a" size="200" offset="auto"/>
+    <node name="a" size="200" offset="auto" />
     <node name="href" size="50" />
     <node name="qye" size="40" />
 </intersection>
